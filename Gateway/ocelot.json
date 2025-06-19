@@ -2,7 +2,7 @@
 	"Routes": [
 		{
 			// ServiceA
-			"DownstreamPathTemplate": "/api/weather",
+			"DownstreamPathTemplate": "/WeatherForecast",
 			"DownstreamScheme": "https",
 			"DownstreamHostAndPorts": [
 				{
@@ -16,6 +16,19 @@
 				"AuthenticationProviderKey": "Bearer",
 				"AllowedScopes": [ "serviceA.read", "serviceA.write" ]
 			}
+		},
+		{
+			// External Service:
+			"DownstreamPathTemplate": "/recipes",
+			"DownstreamScheme": "https",
+			"DownstreamHostAndPorts": [
+				{
+					"Host": "dummyjson.com",
+					"Port": 443
+				}
+			],
+			"UpstreamPathTemplate": "/api/recipes",
+			"UpstreamHttpMethod": [ "GET" ]
 		}
 	],
 	"GlobalConfiguration": {
